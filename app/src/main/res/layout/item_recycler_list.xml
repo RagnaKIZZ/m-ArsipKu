@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:paddingRight="@dimen/_10sdp"
+    android:paddingLeft="@dimen/_10sdp"
+    android:paddingTop="@dimen/_5sdp">
+
+    <View
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/item_txt_perihal"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/item_txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:textColor="#727272"
+        android:textSize="@dimen/_12sdp"
+        tools:text="Nomor Surat" />
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/item_txt_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_txt_title"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:maxLines="1"
+        android:textColor="#727272"
+        android:textSize="@dimen/_12sdp"
+        tools:text="Teruntuk/Dari" />
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/item_txt_perihal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_txt_message"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:maxLines="1"
+        android:textColor="#727272"
+        android:textSize="@dimen/_12sdp"
+        tools:text="Perihal" />
+
+    <TextView
+        android:id="@+id/item_txt_tanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:textColor="#727272"
+        android:textSize="@dimen/_12sdp"
+        tools:text="dd/mm" />
+    <ImageView
+        android:src="@drawable/ic_attachment_black_24dp"
+        android:id="@+id/logo_lampiran"
+        android:layout_toLeftOf="@id/item_txt_tanggal"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"/>
+
+
+
+</RelativeLayout>

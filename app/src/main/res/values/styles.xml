@@ -1,0 +1,103 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+    </style>
+
+    <style name="NoToolBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">#ffff</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="drawerArrowStyle">@style/DrawerHamburgerStyle</item>
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <!--        <item name="android:windowEnterTransition">@transition/explode</item>-->
+        <!--        <item name="android:windowExitTransition">@transition/explode</item>-->
+
+        <!--        &lt;!&ndash; specify shared element transitions &ndash;&gt;-->
+        <!--        <item name="android:windowSharedElementEnterTransition">@transition/changebounds</item>-->
+        <!--        <item name="android:windowSharedElementExitTransition">@transition/changebounds</item>-->
+    </style>
+
+    <style name="TextInput" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlNormal">#ffff</item>
+        <item name="colorControlActivated">#ffff</item>
+        <item name="colorControlHighlight">#ffff</item>
+        <item name="android:textColor">#ffff</item>
+        <item name="android:textColorHint">#ffff</item>
+    </style>
+
+    <style name="NoActToolBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:statusBarColor" tools:targetApi="m">@android:color/transparent</item>
+        <item name="drawerArrowStyle">@style/DrawerHamburgerStyle</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+        <!-- specify enter and exit transitions -->
+        <!--        <item name="android:windowEnterTransition">@transition/explode</item>-->
+        <!--        <item name="android:windowExitTransition">@transition/explode</item>-->
+
+        <!--        &lt;!&ndash; specify shared element transitions &ndash;&gt;-->
+        <!--        <item name="android:windowSharedElementEnterTransition">@transition/changebounds</item>-->
+        <!--        <item name="android:windowSharedElementExitTransition">@transition/changebounds</item>-->
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="DrawerHamburgerStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/black</item>
+    </style>
+
+    <style name="AppTheme.Template.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/colorAccent</item>
+
+    </style>
+
+    <style name="AppTheme.Template.Base1" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@android:color/holo_blue_light</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/colorAccent</item>
+
+
+    </style>
+
+    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@android:color/white</item>
+
+    </style>
+
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+</resources>

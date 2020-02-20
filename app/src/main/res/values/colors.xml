@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1378D7</color>
+<!--    <color name="colorPrimary">#005CA1</color>-->
+    <color name="colorPrimaryDark">#ffff</color>
+    <color name="colorAccent">#4F95CF</color>
+    <color name="merah_airnav">#CE1C1C</color>
+    <color name="biru_lain">#2471a3</color>
+    <color name="primariGelap">#004ba0</color>
+</resources>

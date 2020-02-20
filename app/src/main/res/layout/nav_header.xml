@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_160sdp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="bottom"
+    android:background="@drawable/background_header"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/foto_header"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:src="@drawable/ic_person_black_24dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_gravity="bottom|center"
+                android:elevation="@dimen/_10sdp"
+                android:transitionName="@string/foto_trans"/>
+
+            <TextView
+                android:text="NAMA"
+                android:layout_gravity="bottom|center"
+                android:id="@+id/nama_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#fff"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:textSize="@dimen/_10sdp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    style="@style/TextAppearance.AppCompat.Widget.TextView.SpinnerItem"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/spinner_jabatan"
+                    android:textAlignment="textStart"
+                    android:layout_marginBottom="@dimen/_10sdp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/pb_img"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+
+
+
+</LinearLayout>

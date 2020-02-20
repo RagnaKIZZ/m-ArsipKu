@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:src="@drawable/ic_adjust_black_24dp"/>
+
+        <TextView
+            android:id="@+id/item_txt_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
+            tools:text="KEPALA DIVISI IT"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+    <TextView
+        android:layout_below="@+id/l1"
+        android:id="@+id/item_txt_stts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_10ssp"
+        android:textStyle="italic"
+        tools:text="Read" />
+    <TextView
+        android:layout_below="@+id/l1"
+        android:layout_toRightOf="@+id/item_txt_stts"
+        android:id="@+id/item_txt_tgl_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_10ssp"
+        android:textStyle="italic"
+        tools:text="Read" />
+
+
+
+</RelativeLayout>

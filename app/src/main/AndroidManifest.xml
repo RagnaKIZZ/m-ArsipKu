@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="ahmedt.m_arsipku">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:icon="@drawable/arsipku3"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/confignetwork"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".Detail.DetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base"></activity>
+        <activity
+            android:name=".DetailNotaMasuk.DetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base"/>
+        <activity
+            android:name=".DetailDispo.DetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base"/>
+        <activity
+            android:name=".DetailSuratMasuk.DetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base"/>
+        <activity
+            android:name=".DaftarNomor.DataNomorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".DaftarNomor.CariDataNomor.CariDataNomorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".SuratMasuk.SuratMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".SuratMasuk.CariSuratMasuk.CariSuratMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".NotaMasuk.NotaMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".NotaMasuk.CariNotaMasuk.CariNotaMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".NotaTerkirim.NotaTerkirimActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".NotaTerkirim.CariNotaTerkirim.CariNotaTerkirimActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".MemoMasuk.CariMemoMasuk.CariMemoMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".MemoMasuk.MemoMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".MemoTerkirim.CariMemoTerkirim.CariMemoTerkirimActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".MemoTerkirim.MemoTerkirimActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".SuratTerkirim.SuratTerkirimActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".SuratTerkirim.CariSuratTerkirim.CariSuratTerkirimActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".SuratDisposisiMasuk.CariSuratDisposisiMasuk.CariSuratDisposisiMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".SuratDisposisiMasuk.SuratDisposisiMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".SuratDisposisiKeluar.SuratDisposisiKeluarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".SuratDisposisiKeluar.CariSuratDisposisiKeluar.CariSuratDisposisiKeluarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".NotaDisposisiKeluar.CariNotaDisposisiKeluar.CariNotaDisposisiKeluarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".NotaDisposisiKeluar.NotaDisposisiKeluarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".NotaDisposisiMasuk.CariNotaDisposisiMasuk.CariNotaDisposisiMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".NotaDisposisiMasuk.NotaDisposisiMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".SplashScreen.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoToolBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Profiles.ProfilesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base1" />
+        <activity
+            android:name=".Main.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActToolBar" />
+        <activity
+            android:name=".Login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoToolBar"
+            android:windowSoftInputMode="adjustResize" />
+    </application>
+
+</manifest>
