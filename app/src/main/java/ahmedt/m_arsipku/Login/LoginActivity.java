@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (urlFoto.length() <= 5){
                                     urlFoto = "100" + response.getData().getUsername();
                                 }
-                                Prefs.putString(FOTO, Server.imgURL+urlFoto+"/"+urlFoto+".jpg");
+                                Prefs.putString(FOTO, Server.imgURL+urlFoto+"/"+response.getData().getUsername()+".jpg");
                                 Prefs.putString(ID_SEK, response.getData().getIdSek());
                                 Prefs.putString(ID_PH, response.getData().getIdPh());
                                 Prefs.putString(PTS_PH, response.getData().getPtsPh());

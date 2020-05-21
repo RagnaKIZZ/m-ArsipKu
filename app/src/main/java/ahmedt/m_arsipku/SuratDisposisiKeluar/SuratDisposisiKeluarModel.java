@@ -1,8 +1,8 @@
 package ahmedt.m_arsipku.SuratDisposisiKeluar;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 
 public class SuratDisposisiKeluarModel{

@@ -1,33 +1,29 @@
-package ahmedt.m_arsipku.DetailDispo;
+package ahmedt.m_arsipku.DetailSuratTerkirim;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-import ahmedt.m_arsipku.DetailDispo.DetailDispoModel.TertujuItem;
+
+import ahmedt.m_arsipku.DetailSuratTerkirim.DetailSuratTerkirimModel.TertujuItem;
 import ahmedt.m_arsipku.R;
 
 
 /**
  * A custom adapter to use with the RecyclerView widget.
  */
-public class DetailTertujuTAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final String TAG = "DetailTertujuTAdapter";
+public class DetailTertujuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
     private ArrayList<TertujuItem> modelList;
 
 
-    public DetailTertujuTAdapter(Context context, ArrayList<TertujuItem> modelList) {
+    public DetailTertujuAdapter(Context context, ArrayList<TertujuItem> modelList) {
         this.mContext = context;
         this.modelList = modelList;
     }
@@ -53,24 +49,8 @@ public class DetailTertujuTAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             final TertujuItem model = getItem(position);
             ViewHolder genericViewHolder = (ViewHolder) holder;
             genericViewHolder.itemTxtMessage.setText(model.getNamaJabatan());
-            genericViewHolder.itemTxtStts.setText(model.getStatus());
-            if (model.getStatus().toLowerCase().equals("unread")){
-                genericViewHolder.itemTxtStts.setTextColor(Color.RED);
-                genericViewHolder.itemTglRead.setVisibility(View.GONE);
-            }else {
-                genericViewHolder.itemTxtStts.setTextColor(Color.GREEN);
-                genericViewHolder.itemTglRead.setVisibility(View.VISIBLE);
-                String tgRead = model.getTglRead();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                try{
-                    Date date = format.parse(tgRead);
-                    SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy h:mm a");
-                    String realTime = format1.format(date);
-                    genericViewHolder.itemTglRead.setText(realTime);
-                }catch(Exception e){
-                    Log.d(TAG, "onBindViewHolder: "+e.getMessage());
-                }
-            }
+            genericViewHolder.itemTxtStts.setVisibility(View.GONE);
+            genericViewHolder.itemTglRead.setVisibility(View.GONE);
         }
     }
 

@@ -81,9 +81,9 @@ public class CariNotaTerkirimActivity extends AppCompatActivity{
             public void onRefresh() {
                 // Do your stuff on refresh
                         if (swipeRefreshRecyclerList.isRefreshing())
-                            btn_reload.setVisibility(View.GONE);
-                            setAdapter(id_so, key_intent);
-                            swipeRefreshRecyclerList.setRefreshing(false);
+                        {
+                            refreshLayout(id_so, key_intent);
+                        }
             }
         });
 
@@ -106,6 +106,87 @@ public class CariNotaTerkirimActivity extends AppCompatActivity{
             }
         });
 
+    }
+
+    private void refreshLayout(String id_so, String key) {
+        AndroidNetworking.post(Server.getURL_NotaTerkirim)
+                .addBodyParameter("id_so", id_so)
+                .addBodyParameter("page", "1")
+                .addBodyParameter("key", key)
+                .setTag("getNotaTerkirim")
+                .build()
+                .getAsOkHttpResponseAndObject(NotaTerkirimModel.class, new OkHttpResponseAndParsedRequestListener<NotaTerkirimModel>() {
+                    @Override
+                    public void onResponse(Response okHttpResponse, NotaTerkirimModel response) {
+                        if (okHttpResponse.isSuccessful()){
+                            swipeRefreshRecyclerList.setRefreshing(false);
+                            progressBar.setVisibility(View.GONE);
+                            imgError.setVisibility(View.GONE);
+                            txtError.setVisibility(View.GONE);
+                            btn_reload.setVisibility(View.GONE);
+                            txtOps.setVisibility(View.GONE);
+                            if (response.getCode()==200){
+                                swipeRefreshRecyclerList.setVisibility(View.VISIBLE);
+                                modelList.clear();
+                                currentPage=1;
+                                for (int i = 0; i < response.getData().size(); i++) {
+                                    final DataItem items = new DataItem();
+                                    items.setId(response.getData().get(i).getId());
+                                    items.setIdBerkas(response.getData().get(i).getIdBerkas());
+                                    items.setIdCabang(response.getData().get(i).getIdCabang());
+                                    items.setBerita(response.getData().get(i).getBerita());
+                                    items.setDari(response.getData().get(i).getDari());
+                                    items.setFileAttach(response.getData().get(i).getFileAttach());
+                                    items.setPerihal(response.getData().get(i).getPerihal());
+                                    items.setTglSurat(response.getData().get(i).getTglSurat());
+                                    items.setNoSurat(response.getData().get(i).getNoSurat());
+                                    items.setLampiran(response.getData().get(i).getLampiran());
+                                    items.setTglSent(response.getData().get(i).getTglSent());
+                                    items.setRahasia(response.getData().get(i).getRahasia());
+                                    items.setFileNotadinas(response.getData().get(i).getFileNotadinas());
+                                    modelList.add(items);
+                                }
+                                TotalCount = response.getItemCount();
+                                mAdapter.updateList(modelList);
+                                if (modelList.size()!=TotalCount){
+                                    btn_loadMore.setVisibility(View.VISIBLE);
+                                }else {
+                                    btn_loadMore.setVisibility(View.GONE);
+                                }
+                            }else{
+                                if (modelList.isEmpty()){
+                                    imgError.setImageResource(R.drawable.no_mail);
+                                    txtError.setText("Tidak Ada Data");
+                                    imgError.setVisibility(View.VISIBLE);
+                                    txtError.setVisibility(View.VISIBLE);
+                                    btn_reload.setVisibility(View.VISIBLE);
+                                    txtOps.setVisibility(View.VISIBLE);
+                                }else {
+                                    Toast.makeText(CariNotaTerkirimActivity.this, "Tidak bisa memperbarui data", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        progressBar.setVisibility(View.GONE);
+                        swipeRefreshRecyclerList.setRefreshing(false);
+                        if (modelList.isEmpty()){
+                            imgError.setImageResource(R.drawable.meteorology);
+                            txtError.setText("Jaringan atau Server Bermasalah");
+                            imgError.setVisibility(View.VISIBLE);
+                            txtError.setVisibility(View.VISIBLE);
+                            btn_reload.setVisibility(View.VISIBLE);
+                            txtOps.setVisibility(View.VISIBLE);
+                        }else {
+                            Toast.makeText(CariNotaTerkirimActivity.this, "Tidak bisa memperbarui data", Toast.LENGTH_SHORT).show();
+
+                        }
+                        Log.d(TAG, "onError: "+anError.getErrorDetail());
+                    }
+                });
     }
 
     private void findViews() {

@@ -19,53 +19,57 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_20sdp">
-            <LinearLayout
-                android:background="@drawable/background_header"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_230sdp"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="center">
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/img_profiles"
-                        android:layout_margin="@dimen/_30sdp"
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="@dimen/_100sdp"
-                        android:src="@drawable/ic_person_black_24dp"
-                        android:elevation="@dimen/_4sdp"
-                        android:transitionName="@string/foto_trans"/>
-                    <ProgressBar
+                <LinearLayout
+                    android:background="@drawable/background_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_230sdp"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+                    <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/pb_profil"
-                        android:layout_gravity="center"/>
-                </FrameLayout>
-            </LinearLayout>
-                    <android.support.v7.widget.Toolbar
-                        android:layout_marginTop="@dimen/_15sdp"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="@drawable/toolbar_bg"
-                        android:id="@+id/toolbar"
-                        app:elevation="0dp"
-                        app:titleTextColor="@android:color/white"
-                        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                        android:layout_gravity="center">
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_profiles"
+                            android:layout_marginLeft="@dimen/_30sdp"
+                            android:layout_marginRight="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_50sdp"
+                            android:layout_marginBottom="@dimen/_20sdp"
+                            android:layout_width="@dimen/_115sdp"
+                            android:layout_height="@dimen/_115sdp"
+                            android:src="@drawable/ic_person_black_24dp"
+                            android:elevation="@dimen/_4sdp"
+                            android:transitionName="@string/foto_trans"/>
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pb_profil"
+                            android:layout_gravity="center"/>
+                    </FrameLayout>
+                </LinearLayout>
+                <android.support.v7.widget.Toolbar
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@drawable/toolbar_bg"
+                    android:id="@+id/toolbar"
+                    app:elevation="0dp"
+                    app:titleTextColor="@android:color/white"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    />
             </FrameLayout>
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nama"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginLeft="@dimen/_35sdp"
-            android:layout_marginRight="@dimen/_35sdp"
-            android:layout_marginBottom="@dimen/_10sdp"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_35sdp"
+                android:layout_marginRight="@dimen/_35sdp"
+                android:layout_marginBottom="@dimen/_10sdp"/>
 
             <TextView
                 android:id="@+id/txt_nama_profiles"
@@ -156,6 +160,7 @@
                 android:id="@+id/txt_cabang_profiles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_30sdp"
                 tools:text="Kantor Pusat"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_13sdp"

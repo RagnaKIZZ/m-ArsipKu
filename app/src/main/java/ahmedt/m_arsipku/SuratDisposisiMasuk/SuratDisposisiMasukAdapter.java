@@ -82,9 +82,12 @@ public class SuratDisposisiMasukAdapter extends RecyclerView.Adapter<RecyclerVie
                 perihal = "Tidak Ada";
             }
 
-            if (model.getStatus().equals("unread")){
+             if (model.getStatus().equals("unread")){
                 genericViewHolder.itemTxtTitle.setTextColor(Color.BLACK);
                 genericViewHolder.itemTxtTanggal.setTextColor(Color.BLACK);
+            }else if(model.getStatus().equals("read")){
+                genericViewHolder.itemTxtTitle.setTextColor(Color.GRAY);
+                genericViewHolder.itemTxtTanggal.setTextColor(Color.GRAY);
             }
             if (model.getFileAttach().isEmpty()){
                 genericViewHolder.itemImg.setVisibility(View.GONE);

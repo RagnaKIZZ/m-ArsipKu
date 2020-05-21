@@ -134,6 +134,7 @@
                 android:orientation="vertical"
                 android:layout_margin="@dimen/_5sdp">
                 <android.support.v7.widget.CardView
+                    android:visibility="gone"
                     android:id="@+id/cv_daftar_nomor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -233,6 +234,7 @@
                                     android:src="@drawable/ic_mail_black_24dp"
                                     android:layout_margin="@dimen/_5sdp"/>
                                 <android.support.v7.widget.CardView
+                                    android:visibility="gone"
                                     android:id="@+id/badge_1"
                                     android:layout_width="@dimen/_20sdp"
                                     android:layout_height="wrap_content"
@@ -321,6 +323,7 @@
                                     android:src="@drawable/ic_arrow_downward_black_24dp"
                                     android:layout_margin="@dimen/_5sdp"/>
                                 <android.support.v7.widget.CardView
+                                    android:visibility="gone"
                                     android:id="@+id/badge_2"
                                     android:layout_width="@dimen/_20sdp"
                                     android:layout_height="wrap_content"
@@ -450,6 +453,7 @@
                                         android:layout_margin="@dimen/_5sdp"/>
 
                                     <android.support.v7.widget.CardView
+                                        android:visibility="gone"
                                         android:id="@+id/badge_3"
                                         android:layout_width="@dimen/_20sdp"
                                         android:layout_height="wrap_content"
@@ -540,6 +544,7 @@
                                         android:layout_margin="@dimen/_5sdp"/>
 
                                     <android.support.v7.widget.CardView
+                                        android:visibility="gone"
                                         android:id="@+id/badge_4"
                                         android:layout_width="@dimen/_20sdp"
                                         android:layout_height="wrap_content"
@@ -547,17 +552,18 @@
                                         app:cardCornerRadius="@dimen/_3sdp"
                                         android:elevation="@dimen/_3sdp"
                                         app:cardBackgroundColor="@android:color/holo_red_dark">
+
                                         <TextView
-                                            android:layout_margin="@dimen/_2sdp"
                                             android:id="@+id/txt_badge_4"
-                                            android:layout_gravity="center"
-                                            android:textAlignment="center"
-                                            tools:text="10"
-                                            android:padding="@dimen/_1sdp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_margin="@dimen/_2sdp"
+                                            android:padding="@dimen/_1sdp"
+                                            android:textAlignment="center"
+                                            android:textColor="@android:color/white"
                                             android:textSize="@dimen/_8ssp"
-                                            android:textColor="@android:color/white"/>
+                                            tools:text="10" />
                                     </android.support.v7.widget.CardView>
 
                                 </android.support.v7.widget.CardView>
@@ -608,133 +614,133 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cv_memo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginLeft="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    app:cardCornerRadius="@dimen/_15sdp"
-                    app:cardElevation="@dimen/_2sdp"
-                    android:background="@android:color/white"
-                    app:cardPreventCornerOverlap="false">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_margin="@dimen/_5sdp">
-                        <TextView
-                            android:layout_gravity="left"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_marginRight="@dimen/_15sdp"
-                            android:text="Memo"
-                            android:textSize="@dimen/_12ssp"
-                            android:textColor="@android:color/black"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:paddingLeft="@dimen/_5sdp"
-                            android:paddingRight="@dimen/_5sdp"
-                            android:paddingBottom="@dimen/_5sdp"
-                            android:gravity="left|top">
+<!--                <android.support.v7.widget.CardView-->
+<!--                    android:id="@+id/cv_memo"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginTop="@dimen/_5sdp"-->
+<!--                    android:layout_marginLeft="@dimen/_15sdp"-->
+<!--                    android:layout_marginRight="@dimen/_15sdp"-->
+<!--                    android:layout_marginBottom="@dimen/_10sdp"-->
+<!--                    app:cardCornerRadius="@dimen/_15sdp"-->
+<!--                    app:cardElevation="@dimen/_2sdp"-->
+<!--                    android:background="@android:color/white"-->
+<!--                    app:cardPreventCornerOverlap="false">-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:layout_margin="@dimen/_5sdp">-->
+<!--                        <TextView-->
+<!--                            android:layout_gravity="left"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="@dimen/_5sdp"-->
+<!--                            android:layout_marginLeft="@dimen/_5sdp"-->
+<!--                            android:layout_marginRight="@dimen/_15sdp"-->
+<!--                            android:text="Memo"-->
+<!--                            android:textSize="@dimen/_12ssp"-->
+<!--                            android:textColor="@android:color/black"/>-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:paddingLeft="@dimen/_5sdp"-->
+<!--                            android:paddingRight="@dimen/_5sdp"-->
+<!--                            android:paddingBottom="@dimen/_5sdp"-->
+<!--                            android:gravity="left|top">-->
 
-                            <LinearLayout
-                                android:id="@+id/cv_kotak_memo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_margin="@dimen/_5sdp">
-                                <android.support.v7.widget.CardView
+<!--                            <LinearLayout-->
+<!--                                android:id="@+id/cv_kotak_memo"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:layout_margin="@dimen/_5sdp">-->
+<!--                                <android.support.v7.widget.CardView-->
 
-                                    android:layout_width="@dimen/_40sdp"
-                                    android:layout_height="@dimen/_40sdp"
-                                    android:layout_margin="@dimen/_5sdp"
-                                    app:cardCornerRadius="@dimen/_10sdp"
-                                    app:cardElevation="@dimen/_2sdp"
-                                    app:cardBackgroundColor="@android:color/holo_blue_dark"
-                                    android:foreground="?android:attr/selectableItemBackground">
-                                    <ImageView
-                                        android:layout_gravity="center_horizontal"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/ic_mail_black_24dp"
-                                        android:layout_margin="@dimen/_5sdp"/>
+<!--                                    android:layout_width="@dimen/_40sdp"-->
+<!--                                    android:layout_height="@dimen/_40sdp"-->
+<!--                                    android:layout_margin="@dimen/_5sdp"-->
+<!--                                    app:cardCornerRadius="@dimen/_10sdp"-->
+<!--                                    app:cardElevation="@dimen/_2sdp"-->
+<!--                                    app:cardBackgroundColor="@android:color/holo_blue_dark"-->
+<!--                                    android:foreground="?android:attr/selectableItemBackground">-->
+<!--                                    <ImageView-->
+<!--                                        android:layout_gravity="center_horizontal"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:scaleType="centerCrop"-->
+<!--                                        android:src="@drawable/ic_mail_black_24dp"-->
+<!--                                        android:layout_margin="@dimen/_5sdp"/>-->
 
-<!--                                    <android.support.v7.widget.CardView-->
-<!--                                        android:id="@+id/badge_5"-->
-<!--                                        android:layout_width="wrap_content"-->
-<!--                                        android:layout_height="wrap_content"-->
-<!--                                        android:layout_gravity="right"-->
-<!--                                        app:cardCornerRadius="@dimen/_3sdp"-->
-<!--                                        android:elevation="@dimen/_3sdp"-->
-<!--                                        app:cardBackgroundColor="@android:color/holo_red_dark">-->
-<!--                                        <TextView-->
-<!--                                            android:layout_margin="@dimen/_2sdp"-->
-<!--                                            android:id="@+id/txt_badge_5"-->
-<!--                                            android:textAlignment="center"-->
-<!--                                            tools:text="10"-->
-<!--                                            android:padding="@dimen/_1sdp"-->
-<!--                                            android:layout_width="wrap_content"-->
-<!--                                            android:layout_height="wrap_content"-->
-<!--                                            android:textSize="@dimen/_8ssp"-->
-<!--                                            android:textColor="@android:color/white"/>-->
-<!--                                    </android.support.v7.widget.CardView>-->
+<!--&lt;!&ndash;                                    <android.support.v7.widget.CardView&ndash;&gt;-->
+<!--&lt;!&ndash;                                        android:id="@+id/badge_5"&ndash;&gt;-->
+<!--&lt;!&ndash;                                        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                                        android:layout_gravity="right"&ndash;&gt;-->
+<!--&lt;!&ndash;                                        app:cardCornerRadius="@dimen/_3sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                                        android:elevation="@dimen/_3sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                                        app:cardBackgroundColor="@android:color/holo_red_dark">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                                            android:layout_margin="@dimen/_2sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                                            android:id="@+id/txt_badge_5"&ndash;&gt;-->
+<!--&lt;!&ndash;                                            android:textAlignment="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                                            tools:text="10"&ndash;&gt;-->
+<!--&lt;!&ndash;                                            android:padding="@dimen/_1sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                                            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                                            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                                            android:textSize="@dimen/_8ssp"&ndash;&gt;-->
+<!--&lt;!&ndash;                                            android:textColor="@android:color/white"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </android.support.v7.widget.CardView>&ndash;&gt;-->
 
-                                </android.support.v7.widget.CardView>
-                                <TextView
-                                    android:textAlignment="center"
-                                    android:layout_gravity="center_horizontal"
-                                    android:text="Kotak Masuk"
-                                    android:layout_width="@dimen/_40sdp"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="@dimen/_10ssp"
-                                    android:textColor="@android:color/darker_gray"/>
-                            </LinearLayout>
+<!--                                </android.support.v7.widget.CardView>-->
+<!--                                <TextView-->
+<!--                                    android:textAlignment="center"-->
+<!--                                    android:layout_gravity="center_horizontal"-->
+<!--                                    android:text="Kotak Masuk"-->
+<!--                                    android:layout_width="@dimen/_40sdp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:textSize="@dimen/_10ssp"-->
+<!--                                    android:textColor="@android:color/darker_gray"/>-->
+<!--                            </LinearLayout>-->
 
-                            <LinearLayout
-                                android:id="@+id/cv_terkirim_memo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_margin="@dimen/_5sdp">
-                                <android.support.v7.widget.CardView
+<!--                            <LinearLayout-->
+<!--                                android:id="@+id/cv_terkirim_memo"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="vertical"-->
+<!--                                android:layout_margin="@dimen/_5sdp">-->
+<!--                                <android.support.v7.widget.CardView-->
 
-                                    android:layout_width="@dimen/_40sdp"
-                                    android:layout_height="@dimen/_40sdp"
-                                    android:layout_margin="@dimen/_5sdp"
-                                    app:cardCornerRadius="@dimen/_10sdp"
-                                    app:cardElevation="@dimen/_2sdp"
-                                    app:cardBackgroundColor="@android:color/holo_purple"
-                                    android:foreground="?android:attr/selectableItemBackground">
-                                    <ImageView
-                                        android:layout_gravity="center_horizontal"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:scaleType="centerCrop"
-                                        android:src="@drawable/ic_send_black_24dp"
-                                        android:layout_margin="@dimen/_5sdp"/>
+<!--                                    android:layout_width="@dimen/_40sdp"-->
+<!--                                    android:layout_height="@dimen/_40sdp"-->
+<!--                                    android:layout_margin="@dimen/_5sdp"-->
+<!--                                    app:cardCornerRadius="@dimen/_10sdp"-->
+<!--                                    app:cardElevation="@dimen/_2sdp"-->
+<!--                                    app:cardBackgroundColor="@android:color/holo_purple"-->
+<!--                                    android:foreground="?android:attr/selectableItemBackground">-->
+<!--                                    <ImageView-->
+<!--                                        android:layout_gravity="center_horizontal"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:scaleType="centerCrop"-->
+<!--                                        android:src="@drawable/ic_send_black_24dp"-->
+<!--                                        android:layout_margin="@dimen/_5sdp"/>-->
 
-                                </android.support.v7.widget.CardView>
-                                <TextView
-                                    android:textAlignment="center"
-                                    android:layout_gravity="center_horizontal"
-                                    android:text="Terkirim"
-                                    android:layout_width="@dimen/_40sdp"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="@dimen/_10ssp"
-                                    android:textColor="@android:color/darker_gray"/>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
+<!--                                </android.support.v7.widget.CardView>-->
+<!--                                <TextView-->
+<!--                                    android:textAlignment="center"-->
+<!--                                    android:layout_gravity="center_horizontal"-->
+<!--                                    android:text="Terkirim"-->
+<!--                                    android:layout_width="@dimen/_40sdp"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:textSize="@dimen/_10ssp"-->
+<!--                                    android:textColor="@android:color/darker_gray"/>-->
+<!--                            </LinearLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </LinearLayout>-->
+<!--                </android.support.v7.widget.CardView>-->
             </LinearLayout>
         </LinearLayout>
     </com.xw.repo.widget.BounceScrollView>

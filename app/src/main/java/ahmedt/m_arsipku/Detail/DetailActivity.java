@@ -2,35 +2,24 @@ package ahmedt.m_arsipku.Detail;
 
 import android.Manifest;
 import android.app.DownloadManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pixplicity.htmlcompat.HtmlCompat;
-
-import java.io.File;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -263,113 +252,7 @@ public class DetailActivity extends AppCompatActivity {
 //                Log.d(TAG, "onBindViewHolder: "+e.getMessage());
 //            }
 //        }
-     else if(param_act.equals("memo_masuk")){
-            ahmedt.m_arsipku.MemoMasuk.DataItem dataItem = intent.getParcelableExtra("data_item");
-            txt_isi_1   = dataItem.getNoSurat();
-            txt_isi_2   = dataItem.getJabatanTertuju();
-            txt_isi_3   = dataItem.getJabatanPengirim();
-            txt_isi_4   = dataItem.getTglSurat();
-            txt_isi_5   = dataItem.getBerita();
-            txt_isi_6   = dataItem.getPerihal();
-            lampiran    = dataItem.getFileAttach();
-            String attc  = dataItem.getFileMemo();
-            String jamtem = dataItem.getJabatanTembusan();
 
-            if (txt_isi_1==null){
-                txt_isi_1 = "Menunggu Nomor Surat";
-            }
-            if (txt_isi_2.isEmpty()){
-                txt_isi_2 = "Tidak Ada";
-            }
-            if (txt_isi_3.isEmpty()){
-                txt_isi_3 = "Tidak Ada";
-            }
-            if (txt_isi_5.isEmpty()){
-                txt_isi_5 = "Tidak Ada";
-            }
-            if (txt_isi_6.isEmpty()){
-                txt_isi_6 = "Tidak Ada";
-            }
-            if (lampiran.isEmpty() && attc.isEmpty()){
-                txtI8.setVisibility(View.VISIBLE);
-                lampiran = "Tidak Ada";
-                txtI8.setText(lampiran);
-                rv.setVisibility(View.GONE);
-            }
-            if (!lampiran.isEmpty() && !attc.isEmpty()){
-                String fileAttc = lampiran+"|"+attc;
-                txtI8.setVisibility(View.GONE);
-                rv.setVisibility(View.VISIBLE);
-                String[] aryLampiran = fileAttc.split("\\|");
-                for(String data : aryLampiran){
-                    DetailModel model = new DetailModel();
-                    model.setLampiran(data);
-                    modelLampiran.add(model);
-                }
-            }else if (lampiran.isEmpty() && !attc.isEmpty() && attc.contains("|")){
-                txtI8.setVisibility(View.GONE);
-                String[] aryLampiran = attc.split("\\|");
-                for(String data : aryLampiran){
-                    DetailModel model = new DetailModel();
-                    model.setLampiran(data);
-                    modelLampiran.add(model);
-                }
-            }else if (lampiran.isEmpty() && !attc.isEmpty() && !attc.contains("|")){
-                txtI8.setVisibility(View.GONE);
-                DetailModel model = new DetailModel();
-                model.setLampiran(attc);
-                modelLampiran.add(model);
-            }else if (attc.isEmpty() && !lampiran.isEmpty() && lampiran.contains("|")){
-                txtI8.setVisibility(View.GONE);
-                String[] aryLampiran = lampiran.split("\\|");
-                for(String data : aryLampiran){
-                    DetailModel model = new DetailModel();
-                    model.setLampiran(data);
-                    modelLampiran.add(model);
-                }
-            }else if (attc.isEmpty()&& !lampiran.isEmpty() && !lampiran.contains("|")){
-                txtI8.setVisibility(View.GONE);
-                DetailModel model = new DetailModel();
-                model.setLampiran(lampiran);
-                modelLampiran.add(model);
-            }
-            txtD1.setText("Nomor Surat");
-            txtI1.setText(txt_isi_1);
-            if(!dataItem.getJabatanTembusan().equals("")){
-                txtD2.setText("Tujuan/Tembusan");
-                txtI2.setText(txt_isi_2+"\n"+"\n"+dataItem.getJabatanTembusan());
-            }
-
-            if (jamtem.isEmpty()){
-                txtD2.setText("Tujuan");
-                txtI2.setText(txt_isi_2);
-            }else{
-                txtD2.setText("Tujuan & Tembusan");
-                txtI2.setText(txt_isi_2+"\n"+dataItem.getJabatanTembusan());
-            }
-            txtD3.setText("Dari");
-            txtI3.setText(txt_isi_3);
-            txtD4.setText("Tanggal Surat");
-            txtD5.setText("Berita");
-            txtI7.setText(txt_isi_6);
-            txtD6.setText("File Terlampir & Memo Masuk");
-            txtD7.setText("Perihal");
-            if (!txt_isi_5.isEmpty()){
-                Spanned fromHtml = HtmlCompat.fromHtml(DetailActivity.this, txt_isi_5, 0);
-                txtI5.setMovementMethod(LinkMovementMethod.getInstance());
-                txtI5.setText(fromHtml);
-            }
-
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            try{
-                Date date = format.parse(txt_isi_4);
-                SimpleDateFormat format1 = new SimpleDateFormat("dd-MMMM-yyyy");
-                String realTime = format1.format(date);
-                txtI4.setText(realTime);
-            }catch(Exception e){
-                Log.d(TAG, "onBindViewHolder: "+e.getMessage());
-            }
-        }
         Log.d(TAG, "onCreate: "+txt_isi_4);
     }
 

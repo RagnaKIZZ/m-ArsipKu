@@ -66,7 +66,7 @@ public class DetailTembusanTAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     try{
                         Date date = format.parse(tgRead);
-                        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd h:mm a");
+                        SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy h:mm a");
                         String realTime = format1.format(date);
                         genericViewHolder.itemTglRead.setText(realTime);
                     }catch(Exception e){

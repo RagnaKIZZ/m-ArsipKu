@@ -30,7 +30,6 @@ import ahmedt.m_arsipku.Helper.PrefsClass;
 import ahmedt.m_arsipku.Helper.Server;
 import ahmedt.m_arsipku.R;
 import ahmedt.m_arsipku.SuratDisposisiMasuk.DataItem;
-import ahmedt.m_arsipku.SuratDisposisiMasuk.SuratDisposisiMasukActivity;
 import ahmedt.m_arsipku.SuratDisposisiMasuk.SuratDisposisiMasukAdapter;
 import ahmedt.m_arsipku.SuratDisposisiMasuk.SuratDisposisiMasukModel;
 import okhttp3.Response;
@@ -84,9 +83,9 @@ public class CariSuratDisposisiMasukActivity extends AppCompatActivity{
             public void onRefresh() {
                 // Do your stuff on refresh
                         if (swipeRefreshRecyclerList.isRefreshing())
-                            btn_reload.setVisibility(View.GONE);
-                            setAdapter(id_so, key_intent);
-                            swipeRefreshRecyclerList.setRefreshing(false);
+                        {
+                            refreshLayout(id_so, key_intent);
+                        }
             }
         });
 
@@ -108,6 +107,82 @@ public class CariSuratDisposisiMasukActivity extends AppCompatActivity{
             }
         });
 
+    }
+
+    private void refreshLayout(String id_so, String key) {
+        AndroidNetworking.post(Server.getURL_SuratDisposisiMasuk)
+                .addBodyParameter("id_so", id_so)
+                .addBodyParameter("page", "1")
+                .addBodyParameter("key", key)
+                .setTag("getSuratDisposisiMasuk")
+                .build()
+                .getAsOkHttpResponseAndObject(SuratDisposisiMasukModel.class, new OkHttpResponseAndParsedRequestListener<SuratDisposisiMasukModel>() {
+                    @Override
+                    public void onResponse(Response okHttpResponse, SuratDisposisiMasukModel response) {
+                        if (okHttpResponse.isSuccessful()){
+                            swipeRefreshRecyclerList.setRefreshing(false);
+                            progressBar.setVisibility(View.GONE);
+                            imgError.setVisibility(View.GONE);
+                            txtError.setVisibility(View.GONE);
+                            btn_reload.setVisibility(View.GONE);
+                            txtOps.setVisibility(View.GONE);
+                            if (response.getCode()==200){
+                                swipeRefreshRecyclerList.setVisibility(View.VISIBLE);
+                                modelList.clear();
+                                currentPage=1;
+                                for (int i = 0; i < response.getData().size(); i++) {
+                                    final DataItem items = new DataItem();
+                                    items.setId(response.getData().get(i).getId());
+                                    items.setIdDisposisi(response.getData().get(i).getIdDisposisi());
+                                    items.setNamaJabatan(response.getData().get(i).getNamaJabatan());
+                                    items.setPassword(response.getData().get(i).getPassword());
+                                    items.setDari(response.getData().get(i).getDari());
+                                    items.setFileAttach(response.getData().get(i).getFileAttach());
+                                    items.setPerihal(response.getData().get(i).getPerihal());
+                                    items.setTglSent(response.getData().get(i).getTglSent());
+                                    items.setNoRefSurat(response.getData().get(i).getNoRefSurat());
+                                    items.setKlasifikasi(response.getData().get(i).getKlasifikasi());
+                                    items.setStatus(response.getData().get(i).getStatus());
+                                    modelList.add(items);
+                                }
+                                TotalCount = response.getItemCount();
+                                mAdapter.updateList(modelList);
+                                if (modelList.size()!=TotalCount){
+                                    btn_loadMore.setVisibility(View.VISIBLE);
+                                }else {
+                                    btn_loadMore.setVisibility(View.GONE);
+                                }
+                            }else{
+                                if (modelList.isEmpty()){
+                                    imgError.setImageResource(R.drawable.no_mail);
+                                    txtError.setText("Tidak Ada Data");
+                                    imgError.setVisibility(View.VISIBLE);
+                                    txtError.setVisibility(View.VISIBLE);
+                                    btn_reload.setVisibility(View.VISIBLE);
+                                    txtOps.setVisibility(View.VISIBLE);
+                                }else {
+                                    Toast.makeText(CariSuratDisposisiMasukActivity.this, "Tidak bisa memperbarui data", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        progressBar.setVisibility(View.GONE);
+                        swipeRefreshRecyclerList.setRefreshing(false);
+                        if (modelList.isEmpty()){
+                            imgError.setImageResource(R.drawable.meteorology);
+                            txtError.setText("Jaringan atau Server Bermasalah");
+                            imgError.setVisibility(View.VISIBLE);
+                            txtError.setVisibility(View.VISIBLE);
+                            btn_reload.setVisibility(View.VISIBLE);
+                            txtOps.setVisibility(View.VISIBLE);
+                        }else {
+                            Toast.makeText(CariSuratDisposisiMasukActivity.this, "Tidak bisa memperbarui data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private void findViews() {

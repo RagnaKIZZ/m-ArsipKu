@@ -2,7 +2,6 @@ package ahmedt.m_arsipku.NotaMasuk;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -87,9 +86,12 @@ public class NotaMasukAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 genericViewHolder.itemImg.setVisibility(View.GONE);
             }
 
-            if (model.getStatus().equals("unread")){
+             if (model.getStatus().equals("unread")){
                 genericViewHolder.itemTxtTitle.setTextColor(Color.BLACK);
                 genericViewHolder.itemTxtTanggal.setTextColor(Color.BLACK);
+            }else if(model.getStatus().equals("read")){
+                genericViewHolder.itemTxtTitle.setTextColor(Color.GRAY);
+                genericViewHolder.itemTxtTanggal.setTextColor(Color.GRAY);
             }
 
             genericViewHolder.itemTxtTitle.setText(nosur);

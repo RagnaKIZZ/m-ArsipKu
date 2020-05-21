@@ -1,4 +1,4 @@
-package ahmedt.m_arsipku.DetailNotaMasuk;
+package ahmedt.m_arsipku.DetailSuratTerkirim;
 
 import android.Manifest;
 import android.app.DownloadManager;
@@ -37,12 +37,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import ahmedt.m_arsipku.DetailNotaMasuk.DetailNotaMasukModel.DetailNotaMasukModel;
-import ahmedt.m_arsipku.DetailNotaMasuk.DetailNotaMasukModel.TembusanItem;
-import ahmedt.m_arsipku.DetailNotaMasuk.DetailNotaMasukModel.TertujuItem;
+import ahmedt.m_arsipku.DetailSuratTerkirim.DetailSuratTerkirimModel.DetailSuratTerkirimModel;
+import ahmedt.m_arsipku.DetailSuratTerkirim.DetailSuratTerkirimModel.TembusanItem;
+import ahmedt.m_arsipku.DetailSuratTerkirim.DetailSuratTerkirimModel.TertujuItem;
 import ahmedt.m_arsipku.Helper.Server;
 import ahmedt.m_arsipku.R;
-import ahmedt.m_arsipku.SuratMasuk.DataItem;
 import okhttp3.Response;
 
 public class DetailActivity extends AppCompatActivity {
@@ -51,20 +50,18 @@ public class DetailActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION_CODE = 1000;
     String param_act,txt_isi_1,txt_isi_2,txt_isi_3,txt_isi_4,txt_isi_5,txt_isi_6,txt_isi_7,lampiran, id_nota, nota_param;
     private TextView  txtD1, txtD2, txtD3, txtD4, txtD5, txtD6, txtD7, txtD8;
-    private TextView txtI1, txtI2, txtI3, txtI4, txtI5, txtI6,  txtI7, txtI8;
+    private TextView txtI1, txtI2, txtI3, txtI03, txtI5, txtI6,  txtI7, txtI8;
     private RecyclerView rv, rv2, rv3;
     private Toolbar toolbar;
     private DetailAdapter mAdapter;
     private DetailTertujuAdapter mAdapter_2;
     private DetailTembusanAdapter mAdapter_3;
-    private DetailTertujuTAdapter mAdapter_a;
-    private DetailTembusanTAdapter mAdapter_b;
     private ArrayList<DetailModel> modelLampiran = new ArrayList<>();
     private ArrayList<TertujuItem> modelTertuju = new ArrayList<>();
     private ArrayList<TembusanItem> modelTembusan = new ArrayList<>();
     private LinearLayout linearLayout;
     private ProgressBar progressBar;
-    private Button      btn_reload, btn_download;
+    private Button      btn_reload;
     private ImageView   imgError;
     private TextView    txtError;
     private TextView    txtOps;
@@ -76,10 +73,9 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_nota_masuk);
+        setContentView(R.layout.activity_surat_terkirim);
         Intent intent = getIntent();
         id_nota = intent.getStringExtra("id_nota");
-        nota_param = intent.getStringExtra("nota");
         findview();
         initToolbar();
         initTertuju();
@@ -102,7 +98,7 @@ public class DetailActivity extends AppCompatActivity {
         txtI1 = (TextView) findViewById(R.id.txt_isi_1);
         txtI2 = (TextView) findViewById(R.id.txt_isi_2);
         txtI3 = (TextView) findViewById(R.id.txt_isi_3);
-        txtI4 = (TextView) findViewById(R.id.txt_isi_4);
+        txtI03 = (TextView) findViewById(R.id.txt_isi_03);
         txtI5 = (TextView) findViewById(R.id.txt_isi_5);
         txtI6 = (TextView) findViewById(R.id.txt_isi_6);
         txtI7 = (TextView) findViewById(R.id.txt_isi_7);
@@ -117,13 +113,6 @@ public class DetailActivity extends AppCompatActivity {
         rv3   = (RecyclerView) findViewById(R.id.rv_tembusan);
         progressBar = (ProgressBar) findViewById(R.id.progbar1);
         linearLayout = (LinearLayout) findViewById(R.id.linear_lay);
-        btn_download = (Button) findViewById(R.id.btn_download);
-        btn_download.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                downloadData(FILE_NOTA);
-            }
-        });
         if (rv.getVisibility() == View.VISIBLE){
             mAdapter = new DetailAdapter(DetailActivity.this, modelLampiran);
             rv.setHasFixedSize(true);
@@ -142,13 +131,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void initTertuju(){
-        if (nota_param.equals("masuk")){
             mAdapter_2 = new DetailTertujuAdapter(DetailActivity.this, modelTertuju);
             rv2.setAdapter(mAdapter_2);
-        }else{
-            mAdapter_a = new DetailTertujuTAdapter(DetailActivity.this, modelTertuju);
-            rv2.setAdapter(mAdapter_a);
-        }
         rv2.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rv2.setLayoutManager(layoutManager);
@@ -161,13 +145,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void initTembusan(){
-        if (nota_param.equals("masuk")){
             mAdapter_3 = new DetailTembusanAdapter(DetailActivity.this, modelTembusan);
             rv3.setAdapter(mAdapter_3);
-        }else {
-            mAdapter_b = new DetailTembusanTAdapter(DetailActivity.this, modelTembusan);
-            rv3.setAdapter(mAdapter_b);
-        }
         rv3.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rv3.setLayoutManager(layoutManager);
@@ -182,13 +161,13 @@ public class DetailActivity extends AppCompatActivity {
     private void getData(String id){
         progressBar.setVisibility(View.VISIBLE);
         linearLayout.setVisibility(View.GONE);
-        AndroidNetworking.post(Server.getURL_DetailNotaMasuk)
-                .addBodyParameter("id_nota", id)
-                .setTag("detail_nota_masuk")
+        AndroidNetworking.post(Server.getURL_DetailSuratTerkirim)
+                .addBodyParameter("id", id)
+                .setTag("detail_surat_terkirim")
                 .build()
-                .getAsOkHttpResponseAndObject(DetailNotaMasukModel.class, new OkHttpResponseAndParsedRequestListener<DetailNotaMasukModel>() {
+                .getAsOkHttpResponseAndObject(DetailSuratTerkirimModel.class, new OkHttpResponseAndParsedRequestListener<DetailSuratTerkirimModel>() {
                     @Override
-                    public void onResponse(Response okHttpResponse, DetailNotaMasukModel response) {
+                    public void onResponse(Response okHttpResponse, DetailSuratTerkirimModel response) {
                         if (okHttpResponse.isSuccessful()){
                             progressBar.setVisibility(View.GONE);
                             imgError.setVisibility(View.GONE);
@@ -201,27 +180,15 @@ public class DetailActivity extends AppCompatActivity {
                                 for (int i = 0; i < response.getTertuju().size(); i++) {
                                     final TertujuItem tertujuItem = new TertujuItem();
                                     tertujuItem.setNamaJabatan(response.getTertuju().get(i).getNamaJabatan());
-                                    tertujuItem.setStatus(response.getTertuju().get(i).getStatus());
-                                    tertujuItem.setTglRead(response.getTertuju().get(i).getTglRead());
                                     modelTertuju.add(tertujuItem);
                                 }
-                                if (nota_param.equals("masuk")){
                                     mAdapter_2.updateList(modelTertuju);
-                                }else{
-                                    mAdapter_a.updateList(modelTertuju);
-                                }
                                 for (int i = 0; i < response.getTembusan().size(); i++) {
                                     final TembusanItem tembusanItem = new TembusanItem();
                                     tembusanItem.setNamaJabatan(response.getTembusan().get(i).getNamaJabatan());
-                                    tembusanItem.setStatus(response.getTembusan().get(i).getStatus());
-                                    tembusanItem.setTglRead(response.getTembusan().get(i).getTglRead());
                                     modelTembusan.add(tembusanItem);
                                 }
-                                if (nota_param.equals("masuk")){
                                     mAdapter_3.updateList(modelTembusan);
-                                }else{
-                                    mAdapter_b.updateList(modelTembusan);
-                                }
                                 txt_isi_1 = response.getData().getTglSurat();
                                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                                 try{
@@ -232,8 +199,17 @@ public class DetailActivity extends AppCompatActivity {
                                 }catch(Exception e){
                                     Log.d(TAG, "onBindViewHolder: "+e.getMessage());
                                 }
-                                txtI2.setText(response.getData().getNoSurat());
-                                txtI3.setText(response.getData().getNamaJabatan());
+                                if (response.getData().getNoSurat() != null){
+                                    txtI2.setText(response.getData().getNoSurat());
+                                }else{
+                                    txtI2.setText("[menunggu nomor surat]");
+                                }
+                                txtI03.setText(response.getData().getJenisSurat());
+                                if (!response.getData().getIdCabang().equals("00")){
+                                    txtI3.setText(response.getData().getNamaJabatan()+"-"+response.getData().getNamaCabang());
+                                }else {
+                                    txtI3.setText(response.getData().getNamaJabatan());
+                                }
                                 txtI6.setText(response.getData().getPerihal());
                                 if (!response.getData().getBerita().isEmpty()){
                                     txt_isi_7 = response.getData().getBerita();
@@ -272,7 +248,6 @@ public class DetailActivity extends AppCompatActivity {
                                         downloadData(model.getLampiran());
                                     }
                                 });
-                                FILE_NOTA = response.getData().getFileNotadinas();
                             }else{
                                 layoutError.setVisibility(View.VISIBLE);
                                 imgError.setVisibility(View.VISIBLE);
@@ -299,7 +274,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Detail Nota Dinas");
+        getSupportActionBar().setTitle("Detail Surat Dinas");
     }
 
     @Override

@@ -1,10 +1,7 @@
 package ahmedt.m_arsipku.Helper;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -20,8 +17,6 @@ import com.bumptech.glide.request.target.Target;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import ahmedt.m_arsipku.R;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class Utils {
     public static void showProgressBar(KProgressHUD hud, String title, String detail, Boolean cancelable){

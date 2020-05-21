@@ -27,7 +27,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 
-import ahmedt.m_arsipku.Detail.DetailActivity;
+import ahmedt.m_arsipku.DetailSuratTerkirim.DetailActivity;
 import ahmedt.m_arsipku.Helper.PrefsClass;
 import ahmedt.m_arsipku.Helper.Server;
 import ahmedt.m_arsipku.R;
@@ -85,9 +85,9 @@ public class CariSuratTerkirimActivity extends AppCompatActivity{
             public void onRefresh() {
                 // Do your stuff on refresh
                         if (swipeRefreshRecyclerList.isRefreshing())
-                            btn_reload.setVisibility(View.GONE);
-                            setAdapter(id_so, key_intent);
-                            swipeRefreshRecyclerList.setRefreshing(false);
+                        {
+                            refreshLayout(id_so, key_intent);
+                        }
             }
         });
         btn_loadMore.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +111,92 @@ public class CariSuratTerkirimActivity extends AppCompatActivity{
 
     }
 
+    private void refreshLayout(String id_so, String key) {
+        AndroidNetworking.post(Server.getURL_SuratTerkirim)
+                .addBodyParameter("id_so", id_so)
+                .addBodyParameter("page", "1")
+                .addBodyParameter("key", key)
+                .setTag("getSuratMasuk")
+                .build()
+                .getAsOkHttpResponseAndObject(SuratTerkirimModel.class, new OkHttpResponseAndParsedRequestListener<SuratTerkirimModel>() {
+                    @Override
+                    public void onResponse(Response okHttpResponse, SuratTerkirimModel response) {
+                        if (okHttpResponse.isSuccessful()){
+                            swipeRefreshRecyclerList.setRefreshing(false);
+                            progressBar.setVisibility(View.GONE);
+                            imgError.setVisibility(View.GONE);
+                            txtError.setVisibility(View.GONE);
+                            btn_reload.setVisibility(View.GONE);
+                            txtOps.setVisibility(View.GONE);
+                            if (response.getCode()==200){
+                                swipeRefreshRecyclerList.setVisibility(View.VISIBLE);
+                                modelList.clear();
+                                currentPage=1;
+                                for (int i = 0; i < response.getData().size(); i++) {
+                                    final DataItem items = new DataItem();
+                                    items.setId(response.getData().get(i).getId());
+                                    items.setIdBerkas(response.getData().get(i).getIdBerkas());
+                                    items.setIdCabang(response.getData().get(i).getIdCabang());
+                                    items.setBerita(response.getData().get(i).getBerita());
+                                    items.setDari(response.getData().get(i).getDari());
+                                    items.setFileAttach(response.getData().get(i).getFileAttach());
+                                    items.setPerihal(response.getData().get(i).getPerihal());
+                                    items.setSifatSurat(response.getData().get(i).getSifatSurat());
+                                    items.setTembusan(response.getData().get(i).getTembusan());
+                                    items.setTglSurat(response.getData().get(i).getTglSurat());
+                                    items.setTertuju(response.getData().get(i).getTertuju());
+                                    items.setNoSurat(response.getData().get(i).getNoSurat());
+                                    items.setLampiran(response.getData().get(i).getLampiran());
+                                    items.setKodekla(response.getData().get(i).getKodekla());
+                                    items.setKodeJabatan(response.getData().get(i).getKodeJabatan());
+                                    items.setIdcabangTembusan(response.getData().get(i).getIdcabangTembusan());
+                                    items.setJenisSurat(response.getData().get(i).getJenisSurat());
+                                    items.setStatusSent(response.getData().get(i).getStatusSent());
+                                    items.setIdcabangTertuju(response.getData().get(i).getIdcabangTertuju());
+                                    modelList.add(items);
+                                }
+                                TotalCount = response.getItemCount();
+                                mAdapter.updateList(modelList);
+                                if (modelList.size()!=TotalCount){
+                                    btn_loadMore.setVisibility(View.VISIBLE);
+                                }else {
+                                    btn_loadMore.setVisibility(View.GONE);
+                                }
+                            }else{
+                                if (modelList.isEmpty()){
+                                    imgError.setImageResource(R.drawable.no_mail);
+                                    txtError.setText("Tidak Ada Data");
+                                    imgError.setVisibility(View.VISIBLE);
+                                    txtError.setVisibility(View.VISIBLE);
+                                    btn_reload.setVisibility(View.VISIBLE);
+                                    txtOps.setVisibility(View.VISIBLE);
+                                }else {
+                                    Toast.makeText(CariSuratTerkirimActivity.this, "Tidak bisa memperbarui data", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        progressBar.setVisibility(View.GONE);
+                        swipeRefreshRecyclerList.setRefreshing(false);
+                        if (modelList.isEmpty()){
+                            Log.d(TAG, "onError: "+anError.getErrorDetail());
+                            imgError.setImageResource(R.drawable.meteorology);
+                            txtError.setText("Jaringan atau Server Bermasalah");
+                            imgError.setVisibility(View.VISIBLE);
+                            txtError.setVisibility(View.VISIBLE);
+                            btn_reload.setVisibility(View.VISIBLE);
+                            txtOps.setVisibility(View.VISIBLE);
+                        }else {
+                            Toast.makeText(CariSuratTerkirimActivity.this, "Tidak bisa memperbarui data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
     private void findViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -132,10 +218,9 @@ public class CariSuratTerkirimActivity extends AppCompatActivity{
             @Override
             public void onItemClick(View view, int position, DataItem model) {
                 //handle item click events here
-//                Intent i = new Intent(CariSuratTerkirimActivity.this, DetailActivity.class);
-//                i.putExtra("param", "surat_terkirim");
-//                i.putExtra("data_item", modelList.get(position));
-//                startActivity(i);
+                Intent i = new Intent(CariSuratTerkirimActivity.this, DetailActivity.class);
+                i.putExtra("id_nota", model.getId());
+                startActivity(i);
             }
         });
     }

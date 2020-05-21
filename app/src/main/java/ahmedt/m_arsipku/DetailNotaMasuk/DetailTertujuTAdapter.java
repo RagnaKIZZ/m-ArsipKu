@@ -2,7 +2,6 @@ package ahmedt.m_arsipku.DetailNotaMasuk;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -65,7 +64,7 @@ public class DetailTertujuTAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 try{
                     Date date = format.parse(tgRead);
-                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd h:mm a");
+                    SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy h:mm a");
                     String realTime = format1.format(date);
                     genericViewHolder.itemTglRead.setText(realTime);
                 }catch(Exception e){

@@ -28,14 +28,12 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 
-import ahmedt.m_arsipku.DaftarNomor.DataNomorActivity;
 import ahmedt.m_arsipku.DetailNotaMasuk.DetailActivity;
 import ahmedt.m_arsipku.Helper.PrefsClass;
 import ahmedt.m_arsipku.Helper.Server;
 import ahmedt.m_arsipku.NotaMasuk.CariNotaMasuk.CariNotaMasukActivity;
 import ahmedt.m_arsipku.R;
 import okhttp3.Response;
-
 
 public class NotaMasukActivity extends AppCompatActivity{
 
@@ -80,10 +78,9 @@ public class NotaMasukActivity extends AppCompatActivity{
             @Override
             public void onRefresh() {
                 // Do your stuff on refresh
-                        if (swipeRefreshRecyclerList.isRefreshing())
-                            btn_reload.setVisibility(View.GONE);
-                            setAdapter(id_so);
-                            swipeRefreshRecyclerList.setRefreshing(false);
+                        if (swipeRefreshRecyclerList.isRefreshing()) {
+                            refreshLayout(id_so);
+                        }
             }
         });
 
@@ -342,6 +339,83 @@ public class NotaMasukActivity extends AppCompatActivity{
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void refreshLayout(String id_so){
+        AndroidNetworking.post(Server.getURL_NotaMasuk)
+                .addBodyParameter("id_so", id_so)
+                .addBodyParameter("page", "1")
+                .setTag("getNotaMasuk")
+                .build()
+                .getAsOkHttpResponseAndObject(NotaMasukModel.class, new OkHttpResponseAndParsedRequestListener<NotaMasukModel>() {
+                    @Override
+                    public void onResponse(Response okHttpResponse, NotaMasukModel response) {
+                        if (okHttpResponse.isSuccessful()){
+                            swipeRefreshRecyclerList.setRefreshing(false);
+                            progressBar.setVisibility(View.GONE);
+                            imgError.setVisibility(View.GONE);
+                            txtError.setVisibility(View.GONE);
+                            btn_reload.setVisibility(View.GONE);
+                            txtOps.setVisibility(View.GONE);
+                            if (response.getCode()==200){
+                                modelList.clear();
+                                currentPage=1;
+                                for (int i = 0; i < response.getData().size(); i++) {
+                                    final DataItem items = new DataItem();
+                                    items.setId(response.getData().get(i).getId());
+                                    items.setIdNotadinas(response.getData().get(i).getIdNotadinas());
+                                    items.setDari(response.getData().get(i).getDari());
+                                    items.setFileAttach(response.getData().get(i).getFileAttach());
+                                    items.setPerihal(response.getData().get(i).getPerihal());
+                                    items.setTglSurat(response.getData().get(i).getTglSurat());
+                                    items.setTertuju(response.getData().get(i).getTertuju());
+                                    items.setNoSurat(response.getData().get(i).getNoSurat());
+                                    items.setRahasia(response.getData().get(i).getRahasia());
+                                    items.setPassword(response.getData().get(i).getPassword());
+                                    items.setNamaJabatan(response.getData().get(i).getNamaJabatan());
+                                    items.setTglSent(response.getData().get(i).getTglSent());
+                                    items.setStatus(response.getData().get(i).getStatus());
+                                    modelList.add(items);
+                                }
+                                TotalCount = response.getItemCount();
+                                mAdapter.updateList(modelList);
+                                if (modelList.size()!=TotalCount){
+                                    btn_loadMore.setVisibility(View.VISIBLE);
+                                }else {
+                                    btn_loadMore.setVisibility(View.GONE);
+                                }
+                            }else{
+                                if (modelList.isEmpty()){
+                                    imgError.setImageResource(R.drawable.no_mail);
+                                    txtError.setText("Tidak Ada Data");
+                                    imgError.setVisibility(View.VISIBLE);
+                                    txtError.setVisibility(View.VISIBLE);
+                                    btn_reload.setVisibility(View.VISIBLE);
+                                    txtOps.setVisibility(View.VISIBLE);
+                                }else{
+                                    Toast.makeText(NotaMasukActivity.this, "Tidak bisa memperbarui data", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        swipeRefreshRecyclerList.setRefreshing(false);
+                        if (modelList.isEmpty()){
+                            progressBar.setVisibility(View.GONE);
+                            Log.d(TAG, "onError: "+anError.getErrorDetail());
+                            imgError.setImageResource(R.drawable.meteorology);
+                            txtError.setText("Jaringan atau Server Bermasalah");
+                            imgError.setVisibility(View.VISIBLE);
+                            txtError.setVisibility(View.VISIBLE);
+                            btn_reload.setVisibility(View.VISIBLE);
+                            txtOps.setVisibility(View.VISIBLE);
+                        }else{
+                            Toast.makeText(NotaMasukActivity.this, "Tidak bisa memperbarui data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 }

@@ -14,8 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -31,7 +29,6 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.OkHttpResponseAndParsedRequestListener;
-import com.pixplicity.htmlcompat.HtmlCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -246,8 +243,7 @@ public class DetailActivity extends AppCompatActivity  {
                                     lampiran = "Tidak Ada";
                                     txtI11.setText(lampiran);
                                     rv.setVisibility(View.GONE);
-                                }
-                                if (!lampiran.isEmpty() && !lampiran.contains("|")){
+                                }else if (!lampiran.isEmpty() && !lampiran.contains("|")){
                                     rv.setVisibility(View.VISIBLE);
                                     txtI11.setVisibility(View.GONE);
                                     DetailModel model = new DetailModel();
@@ -359,13 +355,7 @@ public class DetailActivity extends AppCompatActivity  {
         switch (requestCode){
             case REQUEST_PERMISSION_CODE:{
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    if (lampiran.contains("|")){
-                        DetailModel model = new DetailModel();
-                        startDownloading(model.getLampiran());
-                    }else
-                    {
-                        startDownloading(lampiran);
-                    }
+
                 }else{
                     Toast.makeText(this, "Permission Denied..!", Toast.LENGTH_SHORT).show();
                 }

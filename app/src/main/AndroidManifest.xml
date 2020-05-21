@@ -15,33 +15,28 @@
         android:networkSecurityConfig="@xml/confignetwork"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".Detail.DetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Template.Base"></activity>
+            android:theme="@style/AppTheme.Template.Base" />
         <activity
             android:name=".DetailNotaMasuk.DetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Template.Base"/>
+            android:theme="@style/AppTheme.Template.Base" />
         <activity
             android:name=".DetailDispo.DetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Template.Base"/>
-        <activity
-            android:name=".DetailSuratMasuk.DetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Template.Base"/>
-        <activity
-            android:name=".DaftarNomor.DataNomorActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Template.Base" />
         <activity
-            android:name=".DaftarNomor.CariDataNomor.CariDataNomorActivity"
+            android:name=".DetailSuratMasuk.DetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Template.Base" />
         <activity
             android:name=".SuratMasuk.SuratMasukActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Template.Base" />
+        <activity
+            android:name=".DetailSuratTerkirim.DetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Template.Base" />
         <activity
@@ -62,22 +57,6 @@
             android:theme="@style/AppTheme.Template.Base" />
         <activity
             android:name=".NotaTerkirim.CariNotaTerkirim.CariNotaTerkirimActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Template.Base" />
-        <activity
-            android:name=".MemoMasuk.CariMemoMasuk.CariMemoMasukActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Template.Base" />
-        <activity
-            android:name=".MemoMasuk.MemoMasukActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Template.Base" />
-        <activity
-            android:name=".MemoTerkirim.CariMemoTerkirim.CariMemoTerkirimActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Template.Base" />
-        <activity
-            android:name=".MemoTerkirim.MemoTerkirimActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Template.Base" />
         <activity

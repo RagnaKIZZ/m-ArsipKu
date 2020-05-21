@@ -27,19 +27,15 @@ import android.widget.TextView;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.OkHttpResponseAndParsedRequestListener;
-import com.kaopiz.kprogresshud.KProgressHUD;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ahmedt.m_arsipku.DaftarNomor.DataNomorActivity;
 import ahmedt.m_arsipku.Helper.PrefsClass;
 import ahmedt.m_arsipku.Helper.Server;
 import ahmedt.m_arsipku.Helper.Utils;
 import ahmedt.m_arsipku.Login.LoginActivity;
-import ahmedt.m_arsipku.MemoMasuk.MemoMasukActivity;
-import ahmedt.m_arsipku.MemoTerkirim.MemoTerkirimActivity;
 import ahmedt.m_arsipku.NotaDisposisiKeluar.NotaDisposisiKeluarActivity;
 import ahmedt.m_arsipku.NotaDisposisiMasuk.NotaDisposisiMasukActivity;
 import ahmedt.m_arsipku.NotaMasuk.NotaMasukActivity;
@@ -50,7 +46,6 @@ import ahmedt.m_arsipku.SuratDisposisiKeluar.SuratDisposisiKeluarActivity;
 import ahmedt.m_arsipku.SuratDisposisiMasuk.SuratDisposisiMasukActivity;
 import ahmedt.m_arsipku.SuratMasuk.SuratMasukActivity;
 import ahmedt.m_arsipku.SuratTerkirim.SuratTerkirimActivity;
-import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -149,7 +144,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         //inisiasi cardview
-        cv_daftarnomor          = findViewById(R.id.cv_daftar_nomor);
         cv_kotak_surat          = findViewById(R.id.cv_kotak_surat);
         cv_terkirim_surat       = findViewById(R.id.cv_terkirim_surat);
         cv_dispos_masuk_surat   = findViewById(R.id.cv_dispos_masuk_surat);
@@ -158,9 +152,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         cv_terkirim_nota        = findViewById(R.id.cv_terkirim_nota);
         cv_dispos_masuk_nota    = findViewById(R.id.cv_dispos_masuk_nota);
         cv_dispos_keluar_nota   = findViewById(R.id.cv_dispos_keluar_nota);
-        cv_memo                 = findViewById(R.id.cv_memo);
-        cv_kotak_memo           = findViewById(R.id.cv_kotak_memo);
-        cv_terkirim_memo        = findViewById(R.id.cv_terkirim_memo);
         badge_surat             = findViewById(R.id.badge_1);
         badge_sd                = findViewById(R.id.badge_2);
         badge_nota              = findViewById(R.id.badge_3);
@@ -197,7 +188,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setMenu(){
         if (Prefs.getString(PrefsClass.GROUP_PARAM, "").equals("1")){
-            cv_daftarnomor.setVisibility(View.GONE);
 
             cv_kotak_surat.setVisibility(View.VISIBLE);
             cv_terkirim_surat.setVisibility(View.VISIBLE);
@@ -209,13 +199,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             cv_dispos_masuk_nota.setVisibility(View.VISIBLE);
             cv_dispos_keluar_nota.setVisibility(View.VISIBLE);
 
-            cv_memo.setVisibility(View.GONE);
-            cv_kotak_memo.setVisibility(View.GONE);
-            cv_terkirim_memo.setVisibility(View.GONE);
 
         }else  if (Prefs.getString(PrefsClass.GROUP_PARAM, "").equals("2")){
-
-            cv_daftarnomor.setVisibility(View.GONE);
 
             cv_kotak_surat.setVisibility(View.GONE);
             cv_terkirim_surat.setVisibility(View.GONE);
@@ -227,13 +212,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             cv_dispos_masuk_nota.setVisibility(View.VISIBLE);
             cv_dispos_keluar_nota.setVisibility(View.VISIBLE);
 
-            cv_memo.setVisibility(View.GONE);
-            cv_kotak_memo.setVisibility(View.GONE);
-            cv_terkirim_memo.setVisibility(View.GONE);
-
         } else  if (Prefs.getString(PrefsClass.GROUP_PARAM, "").equals("3")){
 
-            cv_daftarnomor.setVisibility(View.GONE);
 
             cv_kotak_surat.setVisibility(View.GONE);
             cv_terkirim_surat.setVisibility(View.GONE);
@@ -245,13 +225,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             cv_dispos_masuk_nota.setVisibility(View.VISIBLE);
             cv_dispos_keluar_nota.setVisibility(View.VISIBLE);
 
-            cv_memo.setVisibility(View.VISIBLE);
-            cv_kotak_memo.setVisibility(View.VISIBLE);
-            cv_terkirim_memo.setVisibility(View.GONE);
-
         }else  if (Prefs.getString(PrefsClass.GROUP_PARAM, "").equals("4")){
-
-            cv_daftarnomor.setVisibility(View.GONE);
 
             cv_kotak_surat.setVisibility(View.GONE);
             cv_terkirim_surat.setVisibility(View.GONE);
@@ -263,26 +237,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             cv_dispos_masuk_nota.setVisibility(View.VISIBLE);
             cv_dispos_keluar_nota.setVisibility(View.GONE);
 
-            cv_memo.setVisibility(View.VISIBLE);
-            cv_kotak_memo.setVisibility(View.GONE);
-            cv_terkirim_memo.setVisibility(View.VISIBLE);
-
         }
     }
 
     private void clickCardView(){
 
-        cv_daftarnomor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DataNomorActivity.class));
-            }
-        });
 
         cv_kotak_surat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                badge_surat.setVisibility(View.GONE);
+
                 startActivity(new Intent(MainActivity.this, SuratMasukActivity.class));
 
             }
@@ -297,7 +261,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         cv_dispos_masuk_surat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                badge_sd.setVisibility(View.GONE);
                 startActivity(new Intent(MainActivity.this, SuratDisposisiMasukActivity.class));
 
             }
@@ -312,7 +275,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         cv_kotak_nota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                badge_nota.setVisibility(View.GONE);
                 startActivity(new Intent(MainActivity.this, NotaMasukActivity.class));
 
             }
@@ -326,7 +288,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         cv_dispos_masuk_nota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                badge_nd.setVisibility(View.GONE);
                 startActivity(new Intent(MainActivity.this, NotaDisposisiMasukActivity.class));
             }
         });
@@ -337,19 +298,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
-        cv_kotak_memo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MemoMasukActivity.class));
-            }
-        });
-        cv_terkirim_memo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MemoTerkirimActivity.class));
-            }
-        });
     }
 
     @Override
@@ -474,8 +422,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void showBadge(String id){
-        KProgressHUD hud = new KProgressHUD(this);
-        Utils.showProgressBar(hud, null, null, false);
+//        KProgressHUD hud = new KProgressHUD(this);
+//        Utils.showProgressBar(hud, null, null, false);
         AndroidNetworking.post(Server.getURL_BadgeIndicator)
                 .addBodyParameter("id_so", id)
                 .build()
@@ -483,19 +431,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onResponse(Response okHttpResponse, BadgeModel response) {
                         if (okHttpResponse.isSuccessful()){
-                            hud.dismiss();
+//                            hud.dismiss();
                             String b1,b2,b3,b4;
                             b1 = response.getData().getSuratMasuk();
                             b2 = response.getData().getSuratDisposisi();
                             b3 = response.getData().getNotaDinas();
                             b4 = response.getData().getNotaDisposisi();
 
-                            int i1,i2,i3,i4, total;
+                            int total,i1,i2,i3,i4;
                             i1 = Integer.parseInt(b1);
                             i2 = Integer.parseInt(b2);
                             i3 = Integer.parseInt(b3);
                             i4 = Integer.parseInt(b4);
                             total = i1+i2+i3+i4;
+
+                            if (i1 > 99){
+                                b1 = "99+";
+                            }
+
+                            if (i2 > 99){
+                                b2 = "99+";
+                            }
+
+                            if (i3 > 99){
+                                b3 = "99+";
+                            }
+
+                            if (i4 > 99){
+                                b4 = "99+";
+                            }
 
                             if (!b1.equals("0")){
                                 txtB1.setText(b1);
@@ -509,7 +473,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 badge_sd.setVisibility(View.VISIBLE);
                             }else{
                                 badge_sd.setVisibility(View.GONE);
-                            }
+                        }
 
                             if (!b3.equals("0")){
                                 txtB3.setText(b3);
@@ -527,6 +491,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //                            if (total > 0){
 //                                ShortcutBadger.applyCount(MainActivity.this, total);
+//                                Intent intent = new Intent(Intent.ACTION_MAIN);
+//                                intent.addCategory(Intent.CATEGORY_HOME);
+//                                ResolveInfo resolveInfo = getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+//                                String currentPackage = resolveInfo.activityInfo.packageName;
 //                            }
                         }
 
@@ -534,9 +502,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     @Override
                     public void onError(ANError anError) {
-                        hud.dismiss();
+//                        hud.dismiss();
+                        badge_surat.setVisibility(View.GONE);
+                        badge_sd.setVisibility(View.GONE);
+                        badge_nota.setVisibility(View.GONE);
+                        badge_nd.setVisibility(View.GONE);
                     }
                 });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        showBadge(Prefs.getString(PrefsClass.ID_PARAM, ""));
     }
 }
 
